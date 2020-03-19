@@ -5,6 +5,8 @@ class ChartClass {
     constructor(sseq, kwargs) {
         this._sseq = sseq;
         this._valid = true;
+        this._x_offset = 0;
+        this._y_offset = 0;
 
         utils.assign_fields(this, kwargs, [
             { "type" : "mandatory", "field" : "x" },
@@ -22,6 +24,10 @@ class ChartClass {
     }
 
     setPosition(x, y, size) {
+        if(isNaN(x) || isNaN(y) || isNaN(size)){
+            console.error(this, x, y, size);
+            throw "class.setPosition called with bad argument.";
+        }
         this._canvas_x = x;
         this._canvas_y = y;
         this._size = size;
@@ -88,7 +94,7 @@ class ChartClass {
         this._last_page = page;
         this._last_page_idx = page_idx;
         return page_idx;
-    }   
+    }
 
     getNameCoord(){
         let tooltip = "";
@@ -98,6 +104,14 @@ class ChartClass {
         tooltip += `(${this.x}, ${this.y})`;
         return tooltip;
     }
+
+    getXOffset() {
+        return this._x_offset;
+    }
+
+    getYOffset() {
+        return this._y_offset;
+    }    
 }
 
 exports.ChartClass = ChartClass;

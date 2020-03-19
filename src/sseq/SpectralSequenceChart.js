@@ -32,7 +32,7 @@ function filter_dictionary_of_lists(dictionary, key,callback){
 class SpectralSequenceChart extends EventEmitter {
     constructor() {
         super();
-        this.offset_size = 5;
+        this.offset_size = 8;
         this.min_class_size = 1;
         this.max_class_size = 3;
         this.class_scale = 10;
@@ -136,10 +136,11 @@ class SpectralSequenceChart extends EventEmitter {
             let idx = c.idx;
             let out = (idx - (num_classes - 1) / 2) * this.offset_size;
             if (isNaN(out)) {
-                console.log("Invalid offset for class:",c);
-                return 0;
+                console.error("Invalid offset for class:",c);
+                c._x_offset = 0;
+            } else {
+                c._x_offset = out; 
             }
-            return out; 
         }
     }
 

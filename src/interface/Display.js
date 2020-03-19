@@ -475,8 +475,8 @@ class Display extends EventEmitter {
         this.classes_to_draw = classes;
         for(let c of classes) {
             c.setPosition( 
-                this.xScale(c.x),// + this.sseq._getXOffset(node)), 
-                this.yScale(c.y),// + this.sseq._getYOffset(node)), 
+                this.xScale(c.x) + c.getXOffset(), 
+                this.yScale(c.y) + c.getYOffset(), 
                 size
             );
         }
