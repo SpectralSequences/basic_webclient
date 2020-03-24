@@ -11,6 +11,10 @@ class ChartNode {
             { "type" : "optional", "field" : "opacity"},            
         ]);
     }
+
+    toJSON() {
+        return utils.public_fields(this);
+    }
 }
 
 exports.ChartNode = ChartNode;

@@ -111,7 +111,11 @@ class ChartClass {
 
     getYOffset() {
         return this._y_offset;
-    }    
+    }
+
+    toJSON() {
+        return utils.public_fields(this);
+    }
 }
 
 exports.ChartClass = ChartClass;

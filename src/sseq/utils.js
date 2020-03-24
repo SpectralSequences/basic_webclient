@@ -55,3 +55,13 @@ exports.assign_kwarg_default = function assign_kwarg_default(obj, kwargs, field,
         obj[field] = kwargs[field]
     }
 }
+
+exports.public_fields = function public_fields(obj){
+    result = {};
+    for(let [key, value] of Object.entries(obj)) {
+        if(!key.startsWith("_")){
+            result[key] = value;
+        }
+    }
+    return result;
+}

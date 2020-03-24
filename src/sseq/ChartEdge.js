@@ -20,6 +20,10 @@ class ChartEdge {
         let min_page = this.min_page || 0;
         return pageRange[0] <= max_page && min_page <= pageRange[0];
     }
+
+    toJSON() {
+        return utils.public_fields(this);
+    }
 }
 
 class ChartDifferential extends ChartEdge {

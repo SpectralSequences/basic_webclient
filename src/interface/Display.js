@@ -19,6 +19,7 @@ class Display extends EventEmitter {
 
         this.gridStyle = gridGo;
         this.gridColor = "#c6c6c6";
+        this.background_color = "#FFFFFF";
         this.gridStrokeWidth = 0.3;
         this.TICK_STEP_LOG_BASE = 1.1; // Used for deciding when to change tick step.
 
@@ -64,6 +65,12 @@ class Display extends EventEmitter {
         if(sseq) {
             this.setSseq(sseq);
         }
+    }
+
+    setBackgroundColor(color) {
+        this.background_color = color;
+        this.container_DOM.style["background"] = color;
+        this.update();
     }
 
     /**
@@ -452,9 +459,9 @@ class Display extends EventEmitter {
     _drawAxes(context){
         context.save();
 
-        // This makes the white square in the bottom left corner which prevents axes labels from appearing to the left
+        // This makes the white square in the bottom left and top right corners which prevents axes labels from appearing to the left
         // or below the axes intercept.
-        context.fillStyle = "#FFF";
+        context.fillStyle = this.background_color;
         context.rect(0, this.clipHeight, this.leftMargin, this.bottomMargin);
         context.rect(0, 0, this.leftMargin, this.topMargin);
         context.fill();
